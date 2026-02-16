@@ -1,8 +1,12 @@
 import 'dart:convert';
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
-import '../../flutter_flow_chart.dart';
+import '../elements/flow_element.dart';
 import 'segment_handler.dart';
+
+/// ArrowHead
+enum ArrowHead { circle, arrow }
 
 /// Arrow style enumeration
 enum ArrowStyle {
@@ -29,6 +33,7 @@ class ArrowParams extends ChangeNotifier {
     this.tension = 1.0,
     this.startArrowPosition = Alignment.centerRight,
     this.endArrowPosition = Alignment.centerLeft,
+    this.head = .arrow,
   }) : _tailLength = tailLength;
 
   ///
@@ -76,6 +81,9 @@ class ArrowParams extends ChangeNotifier {
   /// The style of the arrow.
   ArrowStyle? style;
 
+  /// The head of the arrow
+  final ArrowHead head;
+
   /// The curve tension for pivot points when using [ArrowStyle.segmented].
   /// 0 means no curve on segments.
   double tension;
@@ -88,6 +96,7 @@ class ArrowParams extends ChangeNotifier {
     double? tension,
     Alignment? startArrowPosition,
     Alignment? endArrowPosition,
+    ArrowHead? head,
   }) {
     return ArrowParams(
       thickness: thickness ?? this.thickness,
@@ -96,6 +105,7 @@ class ArrowParams extends ChangeNotifier {
       tension: tension ?? this.tension,
       startArrowPosition: startArrowPosition ?? this.startArrowPosition,
       endArrowPosition: endArrowPosition ?? this.endArrowPosition,
+      head: head ?? this.head,
     );
   }
 
@@ -112,6 +122,7 @@ class ArrowParams extends ChangeNotifier {
       'startArrowPositionY': startArrowPosition.y,
       'endArrowPositionX': endArrowPosition.x,
       'endArrowPositionY': endArrowPosition.y,
+      'kind': head.name,
     };
   }
 
@@ -188,17 +199,17 @@ class DrawArrow extends StatefulWidget {
     required List<Pivot> pivots,
     super.key,
     ArrowParams? arrowParams,
-  })  : arrowParams = arrowParams ?? ArrowParams(),
-        pivots = PivotsNotifier(pivots);
+  }) : arrowParams = arrowParams ?? ArrowParams(),
+       pivots = PivotsNotifier(pivots);
 
   ///
   final ArrowParams arrowParams;
 
   ///
-  final FlowElement<dynamic> srcElement;
+  final FlowElement srcElement;
 
   ///
-  final FlowElement<dynamic> destElement;
+  final FlowElement destElement;
 
   ///
   final PivotsNotifier pivots;
@@ -314,7 +325,40 @@ class ArrowPainter extends CustomPainter {
       drawRectangularLine(canvas, paint);
     }
 
-    canvas.drawCircle(to, params.headRadius, paint);
+    if (params.head == .arrow) {
+      double? angle;
+      if (params.endArrowPosition.x > 0) {
+        angle = math.pi;
+      } else if (params.endArrowPosition.x < 0) {
+        angle = 0;
+      } else if (params.endArrowPosition.y > 0) {
+        angle = (math.pi * 3) / 2;
+      } else if (params.endArrowPosition.y < 0) {
+        angle = math.pi / 2;
+      }
+
+      if (angle != null) {
+        const arrowSize = 16.0;
+        const arrowAngle = 25 * math.pi / 180;
+        final path = Path();
+
+        path.moveTo(
+          to.dx - arrowSize * math.cos(angle - arrowAngle),
+          to.dy - arrowSize * math.sin(angle - arrowAngle),
+        );
+        path.lineTo(to.dx, to.dy);
+        path.lineTo(
+          to.dx - arrowSize * math.cos(angle + arrowAngle),
+          to.dy - arrowSize * math.sin(angle + arrowAngle),
+        );
+        path.close();
+        canvas.drawPath(path, paint);
+      } else {
+        canvas.drawCircle(to, params.headRadius, paint);
+      }
+    } else {
+      canvas.drawCircle(to, params.headRadius, paint);
+    }
 
     paint
       ..color = params.color
@@ -413,10 +457,7 @@ class ArrowPainter extends CustomPainter {
     final p3 = params.endArrowPosition == Alignment.center
         ? Offset(to.dx, to.dy)
         : Offset(to.dx + dx, to.dy + dy);
-    final p2 = Offset(
-      p1.dx + (p3.dx - p1.dx) / 2,
-      p1.dy + (p3.dy - p1.dy) / 2,
-    );
+    final p2 = Offset(p1.dx + (p3.dx - p1.dx) / 2, p1.dy + (p3.dy - p1.dy) / 2);
 
     path
       ..moveTo(p0.dx, p0.dy)
