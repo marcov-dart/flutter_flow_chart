@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_flow_chart/flutter_flow_chart.dart';
+
+import '../../flutter_flow_chart.dart';
 
 /// Common widget for the element text
 class ElementTextWidget extends StatefulWidget {

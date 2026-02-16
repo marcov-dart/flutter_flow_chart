@@ -1,13 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_flow_chart/src/dashboard.dart';
-import 'package:flutter_flow_chart/src/elements/flow_element.dart';
-import 'package:flutter_flow_chart/src/ui/dependency_provider.dart';
-import 'package:flutter_flow_chart/src/ui/draw_arrow.dart';
-import 'package:flutter_flow_chart/src/ui/element_widget.dart';
-import 'package:flutter_flow_chart/src/ui/grid_background.dart';
-import 'package:flutter_flow_chart/src/ui/segment_handler.dart';
+
+import 'dashboard.dart';
+import 'elements/flow_element.dart';
+import 'ui/dependency_provider.dart';
+import 'ui/draw_arrow.dart';
+import 'ui/element_widget.dart';
+import 'ui/grid_background.dart';
+import 'ui/segment_handler.dart';
 
 /// Main flow chart Widget.
 /// It displays the background grid, all the elements and connection lines

@@ -5,11 +5,12 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_flow_chart/flutter_flow_chart.dart';
-import 'package:flutter_flow_chart/src/platform/platform.dart';
-import 'package:flutter_flow_chart/src/store.dart';
-import 'package:flutter_flow_chart/src/ui/segment_handler.dart';
 import 'package:uuid/uuid.dart';
+
+import '../flutter_flow_chart.dart';
+import 'platform/platform.dart';
+import 'store.dart';
+import 'ui/segment_handler.dart';
 
 /// Listener definition for a new connection
 typedef ConnectionListener<T> = void Function(

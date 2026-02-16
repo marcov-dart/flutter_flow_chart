@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_flow_chart/flutter_flow_chart.dart';
-import 'package:flutter_flow_chart/src/ui/segment_handler.dart';
+
+import '../../flutter_flow_chart.dart';
+import 'segment_handler.dart';
 
 /// Arrow style enumeration
 enum ArrowStyle {

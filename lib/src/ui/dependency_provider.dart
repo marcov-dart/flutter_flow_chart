@@ -17,8 +17,8 @@ class DependencyProvider extends InheritedWidget {
         context.dependOnInheritedWidgetOfExactType<DependencyProvider>();
     if (provider == null) {
       throw FlutterError(
-        // ignore: lines_longer_than_80_chars
-        'DependencyProvider.of() called with no DependencyProvider in context for type $T.',
+        'DependencyProvider.of() called with no'
+        ' DependencyProvider in context for type $T.',
       );
     }
 

@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_flow_chart/src/elements/flow_element.dart';
+
+import '../elements/flow_element.dart';
 
 /// A kind of element
 class ImageWidget extends StatefulWidget {
@@ -48,7 +49,7 @@ class _ImageWidgetState extends State<ImageWidget> {
     // Load image
     widget.imageProvider.resolve(ImageConfiguration.empty).addListener(
           ImageStreamListener(
-            (ImageInfo info, _) async {
+            (info, _) async {
               debugPrint('Image info completed: $info');
               // Adjust size
               if (adaptSizeToImage) {

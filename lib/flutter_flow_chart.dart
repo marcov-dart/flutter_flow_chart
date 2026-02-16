@@ -1,5 +1,5 @@
 /// Flow Chart package library.
-library flutter_flow_chart;
+library;
 
 export 'src/dashboard.dart';
 export 'src/data_serializer.dart';

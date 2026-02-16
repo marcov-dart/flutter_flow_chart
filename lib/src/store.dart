@@ -1,4 +1,4 @@
-import 'package:flutter_flow_chart/flutter_flow_chart.dart';
+import '../flutter_flow_chart.dart';
 
 class _Store {
   final Map<dynamic, DataSerializer<dynamic, dynamic>> _serializers = {};

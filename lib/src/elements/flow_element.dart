@@ -5,10 +5,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_flow_chart/flutter_flow_chart.dart';
-import 'package:flutter_flow_chart/src/elements/connection_params.dart';
-import 'package:flutter_flow_chart/src/store.dart';
 import 'package:uuid/uuid.dart';
+
+import '../../flutter_flow_chart.dart';
+import '../store.dart';
+import 'connection_params.dart';
 
 /// Kinf od element
 enum ElementKind {

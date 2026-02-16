@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:flutter_flow_chart/src/ui/draw_arrow.dart';
-import 'package:flutter_flow_chart/src/ui/segment_handler.dart';
+import '../ui/draw_arrow.dart';
+import '../ui/segment_handler.dart';
 
 /// Connection parameters.
 class ConnectionParams {

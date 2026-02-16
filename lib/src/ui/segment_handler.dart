@@ -1,7 +1,8 @@
 // ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 
 import 'package:flutter/material.dart';
-import 'package:flutter_flow_chart/flutter_flow_chart.dart';
+
+import '../../flutter_flow_chart.dart';
 
 /// Widget that use the element properties to display it on the dashboard scene.
 class SegmentHandler extends StatefulWidget {
