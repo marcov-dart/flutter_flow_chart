@@ -63,7 +63,8 @@ class StarWidget extends StatelessWidget {
             child: Text(
               text,
               textAlign: TextAlign.center,
-              style: textStyle ??
+              style:
+                  textStyle ??
                   TextStyle(
                     color: Colors.white,
                     fontSize: size * 0.14,

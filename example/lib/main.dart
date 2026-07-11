@@ -23,9 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Flow Chart Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: const MyHomePage(title: 'Flutter Flow Chart Demo'),
     );
   }
@@ -42,8 +40,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Dashboard<ExampleData> dashboard =
-      Dashboard(dataSerializer: ExampleDataSerializer());
+  Dashboard<ExampleData> dashboard = Dashboard(
+    dataSerializer: ExampleDataSerializer(),
+  );
 
   /// Notifier for the tension slider
   final segmentedTension = ValueNotifier<double>(1);
@@ -96,12 +95,16 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           },
           onElementLongPressed: (context, position, element) {
-            debugPrint('Element with "${element.text}" text '
-                'long pressed');
+            debugPrint(
+              'Element with "${element.text}" text '
+              'long pressed',
+            );
           },
           onElementSecondaryLongTapped: (context, position, element) {
-            debugPrint('Element with "${element.text}" text '
-                'long tapped with mouse right click');
+            debugPrint(
+              'Element with "${element.text}" text '
+              'long tapped with mouse right click',
+            );
           },
           onElementPressed: (context, position, element) {
             debugPrint('Element with "${element.text}" text pressed');
@@ -112,13 +115,17 @@ class _MyHomePageState extends State<MyHomePage> {
             _displayElementMenu(context, position, element);
           },
           onHandlerPressed: (context, position, handler, element) {
-            debugPrint('handler pressed: position $position '
-                'handler $handler" of element $element');
+            debugPrint(
+              'handler pressed: position $position '
+              'handler $handler" of element $element',
+            );
             _displayHandlerMenu(position, handler, element);
           },
           onHandlerLongPressed: (context, position, handler, element) {
-            debugPrint('handler long pressed: position $position '
-                'handler $handler" of element $element');
+            debugPrint(
+              'handler long pressed: position $position '
+              'handler $handler" of element $element',
+            );
           },
           onPivotSecondaryPressed: (context, pivot) {
             dashboard.removeDissection(pivot);
@@ -162,7 +169,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           onHoverScale: 1.1,
           useTouchAsCenter: true,
-          centerOffset: position -
+          centerOffset:
+              position -
               Offset(
                 dashboard.dashboardSize.width / 2,
                 dashboard.dashboardSize.height / 2,
@@ -315,12 +323,11 @@ class _MyHomePageState extends State<MyHomePage> {
             onTap: () {
               dashboard.setElementResizable(element, !element.isResizable);
             },
-            child:
-                Text('Toggle Resizable (${element.isResizable ? '✔' : '✘'})'),
+            child: Text(
+              'Toggle Resizable (${element.isResizable ? '✔' : '✘'})',
+            ),
           ),
-          ElementSettingsMenu(
-            element: element,
-          ),
+          ElementSettingsMenu(element: element),
         ],
         parentContext: context,
       ),
@@ -341,7 +348,8 @@ class _MyHomePageState extends State<MyHomePage> {
             space: 10,
           ),
           // calculate the offset from the dashboard center
-          centerOffset: position -
+          centerOffset:
+              position -
               Offset(
                 dashboard.dashboardSize.width / 2,
                 dashboard.dashboardSize.height / 2,
@@ -394,19 +402,20 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
           ActionChip(
-            label:
-                const Text('Add rect (draggable, resizable, not connectable)'),
+            label: const Text(
+              'Add rect (draggable, resizable, not connectable)',
+            ),
             onPressed: () {
               dashboard.addElement(
                 FlowElement(
-                  position: position,
-                  size: const Size(100, 50),
-                  text: '${dashboard.elements.length}',
-                  handlerSize: 25,
-                  // ignore: avoid_redundant_argument_values
-                  kind: ElementKind.rectangle,
-                  elementData: ExampleData(name: 'Example', value: 42),
-                )
+                    position: position,
+                    size: const Size(100, 50),
+                    text: '${dashboard.elements.length}',
+                    handlerSize: 25,
+                    // ignore: avoid_redundant_argument_values
+                    kind: ElementKind.rectangle,
+                    elementData: ExampleData(name: 'Example', value: 42),
+                  )
                   ..isDraggable = true
                   ..isResizable = true
                   ..isConnectable = false,
@@ -444,10 +453,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   text: '${dashboard.elements.length}',
                   handlerSize: 25,
                   kind: ElementKind.parallelogram,
-                  handlers: [
-                    Handler.bottomCenter,
-                    Handler.topCenter,
-                  ],
+                  handlers: [Handler.bottomCenter, Handler.topCenter],
                   elementData: ExampleData(name: 'Example', value: 42),
                 ),
               );

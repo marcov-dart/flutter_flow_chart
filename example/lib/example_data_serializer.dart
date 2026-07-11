@@ -17,20 +17,14 @@ class ExampleDataSerializer
   Map<String, dynamic>? toJson(ExampleData? data) {
     if (data == null) return null;
 
-    return <String, dynamic>{
-      'name': data.name,
-      'value': data.value,
-    };
+    return <String, dynamic>{'name': data.name, 'value': data.value};
   }
 }
 
 ///
 class ExampleData {
   ///
-  ExampleData({
-    required this.name,
-    required this.value,
-  });
+  ExampleData({required this.name, required this.value});
 
   ///
   final String name;

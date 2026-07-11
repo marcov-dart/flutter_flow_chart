@@ -20,9 +20,7 @@ Future<void> loadDashboard(Dashboard<ExampleData> dashboard) async {
 
 /// Pick image
 Future<Uint8List?> pickImageBytes() async {
-  final pickResult = await FilePicker.platform.pickFiles(
-    type: FileType.image,
-  );
+  final pickResult = await FilePicker.platform.pickFiles(type: FileType.image);
   if (pickResult == null) return null;
   return File(pickResult.files.single.path!).readAsBytesSync();
 }

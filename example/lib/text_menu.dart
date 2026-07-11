@@ -8,12 +8,10 @@ import 'package:star_menu/star_menu.dart';
 
 /// Popup menu for the 'element params" entry
 class TextMenu extends StatelessWidget {
-  TextMenu({
-    required this.element,
-    super.key,
-  })  : sliderSize = ValueNotifier(element.textSize),
-        isBold = ValueNotifier(element.textIsBold),
-        textController = TextEditingController(text: element.text);
+  TextMenu({required this.element, super.key})
+    : sliderSize = ValueNotifier(element.textSize),
+      isBold = ValueNotifier(element.textIsBold),
+      textController = TextEditingController(text: element.text);
   final FlowElement<ExampleData> element;
   final ValueNotifier<double> sliderSize;
   final ValueNotifier<bool> isBold;
@@ -129,11 +127,7 @@ class TextMenu extends StatelessWidget {
 }
 
 class IconMenu extends StatelessWidget {
-  const IconMenu({
-    required this.icon,
-    required this.text,
-    super.key,
-  });
+  const IconMenu({required this.icon, required this.text, super.key});
   final Widget icon;
   final String text;
 
@@ -141,11 +135,7 @@ class IconMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: [
-        icon,
-        const SizedBox(height: 6),
-        Text(text),
-      ],
+      children: [icon, const SizedBox(height: 6), Text(text)],
     );
   }
 }
@@ -170,13 +160,8 @@ class CircleWidget extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.all(
-          Radius.circular(width),
-        ),
-        border: Border.all(
-          width: 2,
-          color: borderColor,
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(width)),
+        border: Border.all(width: 2, color: borderColor),
       ),
     );
   }

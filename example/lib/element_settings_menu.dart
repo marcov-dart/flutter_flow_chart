@@ -8,11 +8,9 @@ import 'package:star_menu/star_menu.dart';
 
 /// Popup menu for the 'element params" entry
 class ElementSettingsMenu extends StatelessWidget {
-  ElementSettingsMenu({
-    required this.element,
-    super.key,
-  })  : sliderThickness = ValueNotifier(element.borderThickness),
-        sliderElevation = ValueNotifier(element.elevation);
+  ElementSettingsMenu({required this.element, super.key})
+    : sliderThickness = ValueNotifier(element.borderThickness),
+      sliderElevation = ValueNotifier(element.elevation);
 
   final FlowElement<ExampleData> element;
   final ValueNotifier<double> sliderThickness;
@@ -23,8 +21,10 @@ class ElementSettingsMenu extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: StarMenu(
-        params: StarMenuParameters.panel(context, columns: 2)
-            .copyWith(openDurationMs: 60, onHoverScale: 1),
+        params: StarMenuParameters.panel(
+          context,
+          columns: 2,
+        ).copyWith(openDurationMs: 60, onHoverScale: 1),
         items: _buildEntries(context),
         child: const Text('Element params'),
       ),
@@ -134,11 +134,7 @@ class ElementSettingsMenu extends StatelessWidget {
 }
 
 class IconMenu extends StatelessWidget {
-  const IconMenu({
-    required this.icon,
-    required this.text,
-    super.key,
-  });
+  const IconMenu({required this.icon, required this.text, super.key});
   final Widget icon;
   final String text;
 
@@ -146,11 +142,7 @@ class IconMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: [
-        icon,
-        const SizedBox(height: 6),
-        Text(text),
-      ],
+      children: [icon, const SizedBox(height: 6), Text(text)],
     );
   }
 }
@@ -175,13 +167,8 @@ class CircleWidget extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.all(
-          Radius.circular(width),
-        ),
-        border: Border.all(
-          width: 2,
-          color: borderColor,
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(width)),
+        border: Border.all(width: 2, color: borderColor),
       ),
     );
   }
