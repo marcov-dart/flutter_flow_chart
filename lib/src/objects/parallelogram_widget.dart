@@ -6,10 +6,7 @@ import 'element_text_widget.dart';
 /// A kind of element
 class ParallelogramWidget extends StatelessWidget {
   ///
-  const ParallelogramWidget({
-    required this.element,
-    super.key,
-  });
+  const ParallelogramWidget({required this.element, super.key});
 
   ///
   final FlowElement<dynamic> element;
@@ -23,9 +20,7 @@ class ParallelogramWidget extends StatelessWidget {
         children: [
           CustomPaint(
             size: element.size,
-            painter: _ParallelogramPainter(
-              element: element,
-            ),
+            painter: _ParallelogramPainter(element: element),
           ),
           ElementTextWidget(element: element),
         ],
@@ -35,9 +30,7 @@ class ParallelogramWidget extends StatelessWidget {
 }
 
 class _ParallelogramPainter extends CustomPainter {
-  _ParallelogramPainter({
-    required this.element,
-  });
+  _ParallelogramPainter({required this.element});
 
   final FlowElement<dynamic> element;
 

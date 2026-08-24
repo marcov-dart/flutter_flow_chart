@@ -8,17 +8,15 @@ import '../elements/flow_element.dart';
 /// A kind of element
 class ImageWidget extends StatefulWidget {
   /// Requires element.data to be an ImageProvider.
-  ImageWidget({
-    required this.element,
-    super.key,
-  })  : assert(
-          element.data is ImageProvider ||
-              (element.serializedData?.isNotEmpty ?? false),
-          'Missing image ("data" parameter should be an ImageProvider)',
-        ),
-        imageProvider = element.serializedData?.isNotEmpty ?? false
-            ? Image.memory(base64Decode(element.serializedData!)).image
-            : element.data as ImageProvider;
+  ImageWidget({required this.element, super.key})
+    : assert(
+        element.data is ImageProvider ||
+            (element.serializedData?.isNotEmpty ?? false),
+        'Missing image ("data" parameter should be an ImageProvider)',
+      ),
+      imageProvider = element.serializedData?.isNotEmpty ?? false
+          ? Image.memory(base64Decode(element.serializedData!)).image
+          : element.data as ImageProvider;
 
   ///
   final FlowElement<dynamic> element;
@@ -47,7 +45,9 @@ class _ImageWidgetState extends State<ImageWidget> {
       widget.element.changeSize(const Size(200, 150));
     }
     // Load image
-    widget.imageProvider.resolve(ImageConfiguration.empty).addListener(
+    widget.imageProvider
+        .resolve(ImageConfiguration.empty)
+        .addListener(
           ImageStreamListener(
             (info, _) async {
               debugPrint('Image info completed: $info');
@@ -61,10 +61,12 @@ class _ImageWidgetState extends State<ImageWidget> {
                 );
               }
               // Serialize image to save/load dashboard
-              final imageData =
-                  await info.image.toByteData(format: ui.ImageByteFormat.png);
-              widget.element.serializedData =
-                  base64Encode(imageData!.buffer.asUint8List());
+              final imageData = await info.image.toByteData(
+                format: ui.ImageByteFormat.png,
+              );
+              widget.element.serializedData = base64Encode(
+                imageData!.buffer.asUint8List(),
+              );
               ui.decodeImageFromList(imageData.buffer.asUint8List(), (image) {
                 debugPrint('Image decoding completed: $image');
                 // Render image
@@ -81,9 +83,11 @@ class _ImageWidgetState extends State<ImageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('Rendering ImageWidget of size ${widget.element.size} '
-        'from provider ${widget.imageProvider.runtimeType} '
-        'and cachedImage $_cachedImage');
+    debugPrint(
+      'Rendering ImageWidget of size ${widget.element.size} '
+      'from provider ${widget.imageProvider.runtimeType} '
+      'and cachedImage $_cachedImage',
+    );
 
     if (_error != null) {
       return Center(child: Text(_error!));

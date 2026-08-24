@@ -6,10 +6,7 @@ import 'element_text_widget.dart';
 /// A kind of element
 class OvalWidget extends StatelessWidget {
   ///
-  const OvalWidget({
-    required this.element,
-    super.key,
-  });
+  const OvalWidget({required this.element, super.key});
 
   ///
   final FlowElement<dynamic> element;
@@ -23,9 +20,7 @@ class OvalWidget extends StatelessWidget {
         children: [
           CustomPaint(
             size: element.size,
-            painter: _OvalPainter(
-              element: element,
-            ),
+            painter: _OvalPainter(element: element),
           ),
           ElementTextWidget(element: element),
         ],
@@ -35,9 +30,7 @@ class OvalWidget extends StatelessWidget {
 }
 
 class _OvalPainter extends CustomPainter {
-  _OvalPainter({
-    required this.element,
-  });
+  _OvalPainter({required this.element});
   final FlowElement<dynamic> element;
 
   @override

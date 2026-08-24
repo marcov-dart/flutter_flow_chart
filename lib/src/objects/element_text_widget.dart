@@ -5,10 +5,7 @@ import '../../flutter_flow_chart.dart';
 /// Common widget for the element text
 class ElementTextWidget extends StatefulWidget {
   ///
-  const ElementTextWidget({
-    required this.element,
-    super.key,
-  });
+  const ElementTextWidget({required this.element, super.key});
 
   ///
   final FlowElement<dynamic> element;
@@ -33,8 +30,9 @@ class _ElementTextWidgetState extends State<ElementTextWidget> {
     final textStyle = TextStyle(
       color: widget.element.textColor,
       fontSize: widget.element.textSize,
-      fontWeight:
-          widget.element.textIsBold ? FontWeight.bold : FontWeight.normal,
+      fontWeight: widget.element.textIsBold
+          ? FontWeight.bold
+          : FontWeight.normal,
       fontFamily: widget.element.fontFamily,
     );
 

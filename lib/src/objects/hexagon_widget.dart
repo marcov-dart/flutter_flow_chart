@@ -6,10 +6,7 @@ import 'element_text_widget.dart';
 /// A kind of element
 class HexagonWidget extends StatelessWidget {
   ///
-  const HexagonWidget({
-    required this.element,
-    super.key,
-  });
+  const HexagonWidget({required this.element, super.key});
 
   ///
   final FlowElement<dynamic> element;
@@ -23,9 +20,7 @@ class HexagonWidget extends StatelessWidget {
         children: [
           CustomPaint(
             size: element.size,
-            painter: _HexagonPainter(
-              element: element,
-            ),
+            painter: _HexagonPainter(element: element),
           ),
           ElementTextWidget(element: element),
         ],
@@ -35,9 +30,7 @@ class HexagonWidget extends StatelessWidget {
 }
 
 class _HexagonPainter extends CustomPainter {
-  _HexagonPainter({
-    required this.element,
-  });
+  _HexagonPainter({required this.element});
   final FlowElement<dynamic> element;
 
   @override

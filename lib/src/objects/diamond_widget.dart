@@ -6,10 +6,7 @@ import 'element_text_widget.dart';
 /// A kind of element
 class DiamondWidget extends StatelessWidget {
   ///
-  const DiamondWidget({
-    required this.element,
-    super.key,
-  });
+  const DiamondWidget({required this.element, super.key});
 
   ///
   final FlowElement<dynamic> element;
@@ -23,9 +20,7 @@ class DiamondWidget extends StatelessWidget {
         children: [
           CustomPaint(
             size: element.size,
-            painter: _DiamondPainter(
-              element: element,
-            ),
+            painter: _DiamondPainter(element: element),
           ),
           ElementTextWidget(element: element),
         ],
@@ -35,9 +30,7 @@ class DiamondWidget extends StatelessWidget {
 }
 
 class _DiamondPainter extends CustomPainter {
-  _DiamondPainter({
-    required this.element,
-  });
+  _DiamondPainter({required this.element});
   final FlowElement<dynamic> element;
 
   @override

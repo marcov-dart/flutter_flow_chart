@@ -6,10 +6,7 @@ import 'element_text_widget.dart';
 /// A kind of element
 class RectangleWidget extends StatelessWidget {
   ///
-  const RectangleWidget({
-    required this.element,
-    super.key,
-  });
+  const RectangleWidget({required this.element, super.key});
 
   ///
   final FlowElement<dynamic> element;

@@ -26,7 +26,7 @@ class SegmentHandler extends StatefulWidget {
 
   ///
   final void Function(BuildContext context, Pivot position)?
-      onPivotSecondaryPressed;
+  onPivotSecondaryPressed;
 
   @override
   State<SegmentHandler> createState() => _SegmentHandlerState();
@@ -97,10 +97,10 @@ class Pivot extends ChangeNotifier {
 
   ///
   Pivot.fromMap(Map<String, dynamic> map)
-      : _pivot = Offset(
-          (map['pivot.dx'] as num).toDouble(),
-          (map['pivot.dy'] as num).toDouble(),
-        );
+    : _pivot = Offset(
+        (map['pivot.dx'] as num).toDouble(),
+        (map['pivot.dy'] as num).toDouble(),
+      );
   Offset _pivot;
 
   ///
@@ -114,10 +114,7 @@ class Pivot extends ChangeNotifier {
 
   ///
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'pivot.dx': _pivot.dx,
-      'pivot.dy': _pivot.dy,
-    };
+    return <String, dynamic>{'pivot.dx': _pivot.dx, 'pivot.dy': _pivot.dy};
   }
 
   ///

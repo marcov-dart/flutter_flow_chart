@@ -29,10 +29,10 @@ class Dashboard<T> extends ChangeNotifier {
     this.minimumZoomFactor = 0.25,
     this.defaultArrowStyle = ArrowStyle.curve,
     DataSerializer<T, dynamic>? dataSerializer,
-  })  : elements = [],
-        _dashboardPosition = Offset.zero,
-        dashboardSize = Size.zero,
-        gridBackgroundParams = GridBackgroundParams() {
+  }) : elements = [],
+       _dashboardPosition = Offset.zero,
+       dashboardSize = Size.zero,
+       gridBackgroundParams = GridBackgroundParams() {
     // This is a workaround to set the handlerFeedbackOffset
     // to improve the user experience on devices with touch screens
     // This will prevent the handler being covered by user's finger
@@ -56,19 +56,21 @@ class Dashboard<T> extends ChangeNotifier {
     Map<String, dynamic> map, {
     DataSerializer<T, dynamic>? dataSerializer,
   }) {
-    final d = Dashboard<T>(
-      defaultArrowStyle: ArrowStyle.values[map['arrowStyle'] as int? ?? 0],
-      dataSerializer: dataSerializer,
-    )
-      ..elements = List<FlowElement<T>>.from(
-        (map['elements'] as List<dynamic>).map<FlowElement<T>>(
-          (x) => FlowElement.fromMap(x as Map<String, dynamic>),
-        ),
-      )
-      ..dashboardSize = Size(
-        ((map['dashboardSizeWidth'] ?? 0) as num).toDouble(),
-        ((map['dashboardSizeHeight'] ?? 0) as num).toDouble(),
-      );
+    final d =
+        Dashboard<T>(
+            defaultArrowStyle:
+                ArrowStyle.values[map['arrowStyle'] as int? ?? 0],
+            dataSerializer: dataSerializer,
+          )
+          ..elements = List<FlowElement<T>>.from(
+            (map['elements'] as List<dynamic>).map<FlowElement<T>>(
+              (x) => FlowElement.fromMap(x as Map<String, dynamic>),
+            ),
+          )
+          ..dashboardSize = Size(
+            ((map['dashboardSizeWidth'] ?? 0) as num).toDouble(),
+            ((map['dashboardSizeHeight'] ?? 0) as num).toDouble(),
+          );
 
     if (map['gridBackgroundParams'] != null) {
       d.gridBackgroundParams = GridBackgroundParams.fromMap(
@@ -78,8 +80,8 @@ class Dashboard<T> extends ChangeNotifier {
     d
       ..blockDefaultZoomGestures =
           (map['blockDefaultZoomGestures'] as bool? ?? false)
-      ..minimumZoomFactor =
-          ((map['minimumZoomFactor'] ?? 0.25) as num).toDouble();
+      ..minimumZoomFactor = ((map['minimumZoomFactor'] ?? 0.25) as num)
+          .toDouble();
 
     return d;
   }
@@ -88,11 +90,10 @@ class Dashboard<T> extends ChangeNotifier {
   factory Dashboard.fromJson(
     String source, {
     DataSerializer<T, dynamic>? dataSerializer,
-  }) =>
-      Dashboard.fromMap(
-        json.decode(source) as Map<String, dynamic>,
-        dataSerializer: dataSerializer,
-      );
+  }) => Dashboard.fromMap(
+    json.decode(source) as Map<String, dynamic>,
+    dataSerializer: dataSerializer,
+  );
 
   /// The current elements in the dashboard
   List<FlowElement<T>> elements;
@@ -279,8 +280,9 @@ class Dashboard<T> extends ChangeNotifier {
     FlowElement<T> destElement,
   ) {
     try {
-      return srcElement.next
-          .firstWhere((element) => element.destElementId == destElement.id);
+      return srcElement.next.firstWhere(
+        (element) => element.destElementId == destElement.id,
+      );
     } catch (e) {
       return null;
     }
@@ -383,10 +385,11 @@ class Dashboard<T> extends ChangeNotifier {
         if (conn.arrowParams.style != ArrowStyle.segmented) return;
 
         final dest = findElementById(conn.destElementId);
-        newPoint = (dest!
-                    .getHandlerPosition(conn.arrowParams.endArrowPosition) +
-                element
-                    .getHandlerPosition(conn.arrowParams.startArrowPosition)) /
+        newPoint =
+            (dest!.getHandlerPosition(conn.arrowParams.endArrowPosition) +
+                element.getHandlerPosition(
+                  conn.arrowParams.startArrowPosition,
+                )) /
             2;
       } catch (e) {
         // apparently is not
@@ -396,8 +399,8 @@ class Dashboard<T> extends ChangeNotifier {
         );
         if (conn.arrowParams.style != ArrowStyle.segmented) return;
 
-        newPoint = (element
-                    .getHandlerPosition(conn.arrowParams.endArrowPosition) +
+        newPoint =
+            (element.getHandlerPosition(conn.arrowParams.endArrowPosition) +
                 src.getHandlerPosition(conn.arrowParams.startArrowPosition)) /
             2;
       }
@@ -498,7 +501,8 @@ class Dashboard<T> extends ChangeNotifier {
     for (final element in elements) {
       // applying new zoom
       element
-        ..position = (element.position - focalPoint) /
+        ..position =
+            (element.position - focalPoint) /
                 gridBackgroundParams.scale *
                 factor +
             focalPoint
@@ -544,8 +548,9 @@ class Dashboard<T> extends ChangeNotifier {
     for (var i = 0; i < elements.length; i++) {
       if (elements[i].id == destId) {
         // if the [id] already exist, remove it and add this new connection
-        sourceElement.next
-            .removeWhere((element) => element.destElementId == destId);
+        sourceElement.next.removeWhere(
+          (element) => element.destElementId == destId,
+        );
         final conn = ConnectionParams(
           destElementId: elements[i].id,
           arrowParams: arrowParams,

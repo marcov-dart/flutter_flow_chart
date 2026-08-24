@@ -34,13 +34,8 @@ class HandlerWidget extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.all(
-          Radius.circular(width),
-        ),
-        border: Border.all(
-          width: 2,
-          color: borderColor,
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(width)),
+        border: Border.all(width: 2, color: borderColor),
       ),
       child: Padding(
         padding: const EdgeInsets.all(4),

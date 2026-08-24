@@ -17,9 +17,11 @@ class ConnectionParams {
   factory ConnectionParams.fromMap(Map<String, dynamic> map) {
     return ConnectionParams(
       destElementId: map['destElementId'] as String,
-      arrowParams:
-          ArrowParams.fromMap(map['arrowParams'] as Map<String, dynamic>),
-      pivots: (map['pivots'] as List?)
+      arrowParams: ArrowParams.fromMap(
+        map['arrowParams'] as Map<String, dynamic>,
+      ),
+      pivots:
+          (map['pivots'] as List?)
               ?.map<Pivot>(
                 (pivot) => Pivot.fromMap(pivot as Map<String, dynamic>),
               )

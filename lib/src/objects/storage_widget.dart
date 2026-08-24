@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../elements/flow_element.dart';
@@ -7,10 +8,7 @@ import 'element_text_widget.dart';
 /// A kind of element
 class StorageWidget extends StatelessWidget {
   ///
-  const StorageWidget({
-    required this.element,
-    super.key,
-  });
+  const StorageWidget({required this.element, super.key});
 
   ///
   final FlowElement<dynamic> element;
@@ -24,9 +22,7 @@ class StorageWidget extends StatelessWidget {
         children: [
           CustomPaint(
             size: element.size,
-            painter: _StoragePainter(
-              element: element,
-            ),
+            painter: _StoragePainter(element: element),
           ),
           ElementTextWidget(element: element),
         ],
@@ -36,9 +32,7 @@ class StorageWidget extends StatelessWidget {
 }
 
 class _StoragePainter extends CustomPainter {
-  _StoragePainter({
-    required this.element,
-  });
+  _StoragePainter({required this.element});
 
   final FlowElement<dynamic> element;
 
@@ -58,7 +52,6 @@ class _StoragePainter extends CustomPainter {
       ..lineTo(size.width, size.height)
       ..lineTo(0, size.height)
       ..lineTo(0, size.height / 4.0 / 2.0)
-
       // oval
       ..addArc(Rect.fromLTWH(0, 0, size.width, size.height / 4.0), pi, pi)
       ..addArc(Rect.fromLTWH(0, 0, size.width, size.height / 4.0), 0, pi)

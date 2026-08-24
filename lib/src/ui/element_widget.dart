@@ -41,15 +41,15 @@ class ElementWidget<T> extends StatefulWidget {
 
   ///
   final void Function(BuildContext context, Offset position)?
-      onElementSecondaryTapped;
+  onElementSecondaryTapped;
 
   ///
   final void Function(BuildContext context, Offset position)?
-      onElementLongPressed;
+  onElementLongPressed;
 
   ///
   final void Function(BuildContext context, Offset position)?
-      onElementSecondaryLongTapped;
+  onElementSecondaryLongTapped;
 
   ///
   final void Function(
@@ -57,7 +57,8 @@ class ElementWidget<T> extends StatefulWidget {
     Offset position,
     Handler handler,
     FlowElement<T> element,
-  )? onHandlerPressed;
+  )?
+  onHandlerPressed;
 
   ///
   final void Function(
@@ -65,7 +66,8 @@ class ElementWidget<T> extends StatefulWidget {
     Offset position,
     Handler handler,
     FlowElement<T> element,
-  )? onHandlerSecondaryTapped;
+  )?
+  onHandlerSecondaryTapped;
 
   ///
   final void Function(
@@ -73,7 +75,8 @@ class ElementWidget<T> extends StatefulWidget {
     Offset position,
     Handler handler,
     FlowElement<T> element,
-  )? onHandlerLongPressed;
+  )?
+  onHandlerLongPressed;
 
   ///
   final void Function(
@@ -81,7 +84,8 @@ class ElementWidget<T> extends StatefulWidget {
     Offset position,
     Handler handler,
     FlowElement<T> element,
-  )? onHandlerSecondaryLongTapped;
+  )?
+  onHandlerSecondaryLongTapped;
 
   @override
   State<ElementWidget<T>> createState() => _ElementWidgetState();
@@ -128,7 +132,8 @@ class _ElementWidgetState<T> extends State<ElementWidget<T>> {
       case ElementKind.image:
         element = ImageWidget(element: widget.element);
       case ElementKind.custom:
-        element = DependencyProvider.of<ElementWidgetBuilder<T>>(context)
+        element =
+            DependencyProvider.of<ElementWidgetBuilder<T>>(context)
                 ?.call(context, widget.element) ??
             SizedBox(
               width: widget.element.size.width,
@@ -252,10 +257,7 @@ class _ElementWidgetState<T> extends State<ElementWidget<T>> {
       child: Draggable<FlowElement<T>>(
         data: widget.element,
         childWhenDragging: const SizedBox.shrink(),
-        feedback: Material(
-          color: Colors.transparent,
-          child: element,
-        ),
+        feedback: Material(color: Colors.transparent, child: element),
         child: element,
         onDragUpdate: (details) {
           widget.element.changePosition(
@@ -263,8 +265,9 @@ class _ElementWidgetState<T> extends State<ElementWidget<T>> {
           );
         },
         onDragEnd: (details) {
-          widget.element
-              .changePosition(details.offset - widget.dashboard.position);
+          widget.element.changePosition(
+            details.offset - widget.dashboard.position,
+          );
         },
       ),
     );

@@ -13,8 +13,8 @@ class DependencyProvider extends InheritedWidget {
 
   /// Grab a dependency by type:
   static T? of<T>(BuildContext context) {
-    final provider =
-        context.dependOnInheritedWidgetOfExactType<DependencyProvider>();
+    final provider = context
+        .dependOnInheritedWidgetOfExactType<DependencyProvider>();
     if (provider == null) {
       throw FlutterError(
         'DependencyProvider.of() called with no'

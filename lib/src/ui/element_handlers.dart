@@ -38,7 +38,8 @@ class ElementHandlers<T> extends StatelessWidget {
     Offset position,
     Handler handler,
     FlowElement<T> element,
-  )? onHandlerPressed;
+  )?
+  onHandlerPressed;
 
   ///
   final void Function(
@@ -46,7 +47,8 @@ class ElementHandlers<T> extends StatelessWidget {
     Offset position,
     Handler handler,
     FlowElement<T> element,
-  )? onHandlerLongPressed;
+  )?
+  onHandlerLongPressed;
 
   ///
   final void Function(
@@ -54,7 +56,8 @@ class ElementHandlers<T> extends StatelessWidget {
     Offset position,
     Handler handler,
     FlowElement<T> element,
-  )? onHandlerSecondaryTapped;
+  )?
+  onHandlerSecondaryTapped;
 
   ///
   final void Function(
@@ -62,7 +65,8 @@ class ElementHandlers<T> extends StatelessWidget {
     Offset position,
     Handler handler,
     FlowElement<T> element,
-  )? onHandlerSecondaryLongTapped;
+  )?
+  onHandlerSecondaryLongTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -111,28 +115,32 @@ class _ElementHandler<T> extends StatelessWidget {
     Offset position,
     Handler handler,
     FlowElement<T> element,
-  )? onHandlerPressed;
+  )?
+  onHandlerPressed;
 
   final void Function(
     BuildContext context,
     Offset position,
     Handler handler,
     FlowElement<T> element,
-  )? onHandlerSecondaryTapped;
+  )?
+  onHandlerSecondaryTapped;
 
   final void Function(
     BuildContext context,
     Offset position,
     Handler handler,
     FlowElement<T> element,
-  )? onHandlerLongPressed;
+  )?
+  onHandlerLongPressed;
 
   final void Function(
     BuildContext context,
     Offset position,
     Handler handler,
     FlowElement<T> element,
-  )? onHandlerSecondaryLongTapped;
+  )?
+  onHandlerSecondaryLongTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -168,9 +176,7 @@ class _ElementHandler<T> extends StatelessWidget {
           dashboard.addNextById(
             details.data['srcElement'] as FlowElement<T>,
             element.id,
-            DrawingArrow.instance.params.copyWith(
-              endArrowPosition: alignment,
-            ),
+            DrawingArrow.instance.params.copyWith(endArrowPosition: alignment),
           );
         },
         onLeave: (data) {
@@ -190,22 +196,14 @@ class _ElementHandler<T> extends StatelessWidget {
               height: handlerSize,
               backgroundColor: Colors.blue,
             ),
-            data: {
-              'srcElement': element,
-              'alignment': alignment,
-            },
+            data: {'srcElement': element, 'alignment': alignment},
             child: GestureDetector(
               onTapDown: (details) =>
                   tapDown = details.globalPosition - dashboard.position,
               onSecondaryTapDown: (details) => secondaryTapDown =
                   details.globalPosition - dashboard.position,
               onTap: () {
-                onHandlerPressed?.call(
-                  context,
-                  tapDown,
-                  handler,
-                  element,
-                );
+                onHandlerPressed?.call(context, tapDown, handler, element);
               },
               onSecondaryTap: () {
                 onHandlerSecondaryTapped?.call(
@@ -216,12 +214,7 @@ class _ElementHandler<T> extends StatelessWidget {
                 );
               },
               onLongPress: () {
-                onHandlerLongPressed?.call(
-                  context,
-                  tapDown,
-                  handler,
-                  element,
-                );
+                onHandlerLongPressed?.call(context, tapDown, handler, element);
               },
               onSecondaryLongPress: () {
                 onHandlerSecondaryLongTapped?.call(
@@ -231,10 +224,7 @@ class _ElementHandler<T> extends StatelessWidget {
                   element,
                 );
               },
-              child: HandlerWidget(
-                width: handlerSize,
-                height: handlerSize,
-              ),
+              child: HandlerWidget(width: handlerSize, height: handlerSize),
             ),
             onDragUpdate: (details) {
               if (!isDragging) {

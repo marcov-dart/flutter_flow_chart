@@ -18,18 +18,21 @@ class GridBackgroundParams extends ChangeNotifier {
 
   ///
   factory GridBackgroundParams.fromMap(Map<String, dynamic> map) {
-    final params = GridBackgroundParams(
-      gridSquare: ((map['gridSquare'] ?? 20.0) as num).toDouble(),
-      gridThickness: ((map['gridThickness'] ?? 0.7) as num).toDouble(),
-      secondarySquareStep: map['secondarySquareStep'] as int? ?? 5,
-      backgroundColor: Color(map['backgroundColor'] as int? ?? 0xFFFFFFFF),
-      gridColor: Color(map['gridColor'] as int? ?? 0xFFFFFFFF),
-    )
-      ..scale = ((map['scale'] ?? 1.0) as num).toDouble()
-      .._offset = Offset(
-        ((map['offset.dx'] ?? 0.0) as num).toDouble(),
-        ((map['offset.dy'] ?? 0.0) as num).toDouble(),
-      );
+    final params =
+        GridBackgroundParams(
+            gridSquare: ((map['gridSquare'] ?? 20.0) as num).toDouble(),
+            gridThickness: ((map['gridThickness'] ?? 0.7) as num).toDouble(),
+            secondarySquareStep: map['secondarySquareStep'] as int? ?? 5,
+            backgroundColor: Color(
+              map['backgroundColor'] as int? ?? 0xFFFFFFFF,
+            ),
+            gridColor: Color(map['gridColor'] as int? ?? 0xFFFFFFFF),
+          )
+          ..scale = ((map['scale'] ?? 1.0) as num).toDouble()
+          .._offset = Offset(
+            ((map['offset.dx'] ?? 0.0) as num).toDouble(),
+            ((map['offset.dy'] ?? 0.0) as num).toDouble(),
+          );
 
     return params;
   }
@@ -112,10 +115,8 @@ class GridBackgroundParams extends ChangeNotifier {
 /// Uses a CustomPainter to draw a grid with the given parameters
 class GridBackground extends StatelessWidget {
   ///
-  GridBackground({
-    super.key,
-    GridBackgroundParams? params,
-  }) : params = params ?? GridBackgroundParams();
+  GridBackground({super.key, GridBackgroundParams? params})
+    : params = params ?? GridBackgroundParams();
 
   /// Grid parameters
   final GridBackgroundParams params;
@@ -153,7 +154,6 @@ class _GridBackgroundPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-
       // Background
       ..color = params.backgroundColor;
     canvas.drawRect(
@@ -174,10 +174,13 @@ class _GridBackgroundPainter extends CustomPainter {
     const extraLines = 2;
 
     // Draw vertical lines
-    for (var x = startX - extraLines * params.gridSquare;
-        x < size.width + extraLines * params.gridSquare;
-        x += params.gridSquare) {
-      paint.strokeWidth = ((x - startX) / params.gridSquare).round() %
+    for (
+      var x = startX - extraLines * params.gridSquare;
+      x < size.width + extraLines * params.gridSquare;
+      x += params.gridSquare
+    ) {
+      paint.strokeWidth =
+          ((x - startX) / params.gridSquare).round() %
                   params.secondarySquareStep ==
               0
           ? params.gridThickness * 2.0
@@ -186,10 +189,13 @@ class _GridBackgroundPainter extends CustomPainter {
     }
 
     // Draw horizontal lines
-    for (var y = startY - extraLines * params.gridSquare;
-        y < size.height + extraLines * params.gridSquare;
-        y += params.gridSquare) {
-      paint.strokeWidth = ((y - startY) / params.gridSquare).round() %
+    for (
+      var y = startY - extraLines * params.gridSquare;
+      y < size.height + extraLines * params.gridSquare;
+      y += params.gridSquare
+    ) {
+      paint.strokeWidth =
+          ((y - startY) / params.gridSquare).round() %
                   params.secondarySquareStep ==
               0
           ? params.gridThickness * 2.0
