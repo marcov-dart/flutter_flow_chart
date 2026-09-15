@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:example/example_data_serializer.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_flow_chart/flutter_flow_chart.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:star_menu/star_menu.dart';
 
 /// Popup menu for the 'element params" entry

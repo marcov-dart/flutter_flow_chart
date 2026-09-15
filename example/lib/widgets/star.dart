@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// StarWidget: a reusable widget that draws a star shape with elevation,
 /// box shadow and centered text inside. Background (app scaffold) is white.
